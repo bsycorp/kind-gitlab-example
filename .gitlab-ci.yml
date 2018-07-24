@@ -1,0 +1,14 @@
+stages:
+  - build
+
+integration-test:
+  services:
+    - bsycorp/kind:latest-1.9
+  image: alpine
+  stage: build
+  script:
+    - >
+      until curl -s --fail http://127.0.0.1:10080/kubernetes-ready; do
+        sleep 1;
+      done
+    - test.sh
