@@ -8,6 +8,7 @@ integration-test:
   stage: build
   script:
     - >
+      # depending on your gitlab setup, the services may not be 127.0.0.1, might be the services name.
       until curl -s --fail http://127.0.0.1:10080/kubernetes-ready; do
         sleep 1;
       done
